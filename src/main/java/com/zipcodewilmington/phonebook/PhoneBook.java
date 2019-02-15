@@ -37,4 +37,13 @@ public class PhoneBook {
         }
         return returnKey;
     }
+
+    public void display(){
+        String outDisplay = "";
+        Set<String> keys = directory.keySet();
+        for(String k : keys){
+            outDisplay += k + " " + this.lookup(k) + "\n";
+        }
+        System.out.println(outDisplay);
+    }
 }

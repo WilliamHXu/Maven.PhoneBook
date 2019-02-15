@@ -4,6 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 /**
  * Created by leon on 1/23/18.
  */
@@ -69,4 +73,24 @@ public class PhoneBookTest {
         Assert.assertEquals(name, actual);
     }
 
+    @Test
+    public void displayTest(){
+        String name = "Will";
+        String phoneNumber = "302-293-1456";
+        String name2 = "Bob";
+        String phoneNumber2 = "302-293-3575";
+
+        phoneBook.add(name, phoneNumber);
+        phoneBook.add(name2, phoneNumber2);
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        phoneBook.display();
+
+        String expected = "" + name2 + " " + phoneNumber2 + "\n" + name + " " + phoneNumber + "\n\n";
+        String actual = outContent.toString();
+
+        Assert.assertEquals(expected, actual);
+    }
 }
